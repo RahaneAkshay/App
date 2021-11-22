@@ -6,7 +6,6 @@
 <thead>
 <tr>
 <th scope="col">Full Name</th>
-<th scope="col">Date of Incorporation</th>
 <th scope="col">Email</th>
 <th scope="col">Password</th>
 <th scope="col">Edit</th>
@@ -15,7 +14,6 @@
 <tbody>
 <tr v-for="(user,index) in userRecords" :key="user.email">
 <th>{{user.fullName}}</th>
-<td>{{user.dateOfIncorporation}}</td>
 <td>{{user.email}}</td>
 <td>{{user.password}}</td>
 <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="openUserModal(user,index)">
@@ -50,7 +48,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" @click="update(currentUser)">Save changes</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="update(currentUser)">Save changes</button>
       </div>
     </div>
   </div>
@@ -72,7 +70,7 @@ export default class UserDashboard extends Vue {
     fullName:'',
     email:'',
     password:'',
-    index:null
+    index:3
   }
 userRecords:Array<any> = [] 
 title = 'UserDahbboard'
@@ -82,9 +80,9 @@ title = 'UserDahbboard'
 @user.Mutation
   public updateUser!: (newUser: any) => void;
 
-  created():void {
+  mounted():void {
       this.userRecords = this.getAllUsers
-      console.log(this.userRecords);
+      console.log('from UserDashoard',this.userRecords);
  }
 openUserModal(user:any,index:any):void{
 this.currentUser.fullName = user.fullName
@@ -93,7 +91,8 @@ this.currentUser.password = user.password
 this.currentUser.index = index
 }
 update(currentUser:any):void{
-
+  this.userRecords[this.currentUser.index] = this.currentUser
+ this.updateUser( this.userRecords)
 }
 
 }

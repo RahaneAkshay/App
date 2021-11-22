@@ -57,7 +57,7 @@
               :disabled="!userFormGroup.valid"
               id="btn"
             >
-              <router-link to="/UserDashboard">Create Account</router-link>
+              <router-link to="/UserDashboard" >Create Account</router-link>
             </button>
           </div>
         </form>
@@ -99,6 +99,8 @@ export default class CreateAccount extends Vue {
   public getAllUsers!: Array<any>;
   getFormData(): void {
     console.log(this.userFormGroup.props);
+  }
+  destroyed(){
     this.setUser(this.userFormGroup.props);
   }
 }
