@@ -7,12 +7,17 @@ class User extends VuexModule {
   public users:Array<any> = data
   @Mutation
   public setUser(newUser:any): void {
-    this.users.push(newUser)
+   this.users =  [...this.users,newUser]
   }
   @Action
   public addUser(newUser: any): void {
     this.context.commit('setUser', newUser)
   }
+  @Mutation
+  public updateUser(newUser:any): void {
+   this.users =  newUser
+  }
+
   get getAllUsers(){
       return this.users
   }

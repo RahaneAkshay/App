@@ -10,19 +10,35 @@
         <form name="form">
           <div>
             <label>Fullname:</label>
-            <input v-model="userFormGroup.props.fullName" type="text" name="name" />
+            <input
+              v-model="userFormGroup.props.fullName"
+              type="text"
+              name="name"
+            />
           </div>
           <div>
             <label>Date of incorparation:</label>
-            <input v-model="userFormGroup.props.dateOfIncorporation" type="date" name="date" />
+            <input
+              v-model="userFormGroup.props.dateOfIncorporation"
+              type="date"
+              name="date"
+            />
           </div>
           <div>
             <label>Email:</label>
-            <input v-model="userFormGroup.props.email" type="text" name="email" />
+            <input
+              v-model="userFormGroup.props.email"
+              type="text"
+              name="email"
+            />
           </div>
           <div>
             <label>Password:</label>
-            <input v-model="userFormGroup.props.password" type="password" name="password" />
+            <input
+              v-model="userFormGroup.props.password"
+              type="password"
+              name="password"
+            />
           </div>
           <div>
             <label>Confirm Password:</label>
@@ -32,17 +48,17 @@
               name="confirmpassword"
             />
           </div>
-          
+
           <div>
             <button
-            type="button"
-            class="btn btn-outline-warning"
-            @click="getFormData()"
-            :disabled="!userFormGroup.valid"
-            id="btn"
-          >
-            <router-link to="/UserDashboard">Create Account</router-link>
-          </button>
+              type="button"
+              class="btn btn-outline-warning"
+              @click="getFormData()"
+              :disabled="!userFormGroup.valid"
+              id="btn"
+            >
+              <router-link to="/UserDashboard">Create Account</router-link>
+            </button>
           </div>
         </form>
       </div>
@@ -54,9 +70,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, Vue } from "vue-property-decorator";
-import {  RxFormBuilder, IFormGroup } from "@rxweb/reactive-forms";
+import { RxFormBuilder, IFormGroup } from "@rxweb/reactive-forms";
 import { User } from "../model/user.model";
 import { namespace } from "vuex-class";
+import Store from "../store/index";
 //import {userStore} from '../store/user'
 
 const user = namespace("User");
@@ -68,23 +85,21 @@ export default class CreateAccount extends Vue {
     super();
     this.userFormGroup = this.formBuilder.formGroup(User) as IFormGroup<User>;
   }
-  title  = 'Create Account'
+  title = "Create Account";
 
   @user.Action
   // eslint-disable-next-line @typescript-eslint/ban-types
-  public addUser!: (userData: any) => {};
+  public addUser!: (userData: any) => void;
   @user.State
   public users!: Array<any>;
+  @user.Mutation
+  public setUser!: (newUser: any) => void;
 
   @user.Getter
   public getAllUsers!: Array<any>;
-  getFormData():void{
+  getFormData(): void {
     console.log(this.userFormGroup.props);
-    // this.addUser(this.userFormGroup.props)
-    //this.addUser(this.userFormGroup.props);
-    // userStore.addUser(this.userFormGroup.props)
-    console.log(this.getAllUsers);
-    this.title  = 'Create Account!!!'
+    this.setUser(this.userFormGroup.props);
   }
 }
 </script>
@@ -160,5 +175,4 @@ button {
   text-align: center;
   color: #ffffff;
 }
-
 </style>
