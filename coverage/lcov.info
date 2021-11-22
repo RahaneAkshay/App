@@ -2,10 +2,12 @@ TN:
 SF:D:\vue-ts\app\src\components\CreateAccount.vue
 FN:84,(anonymous_1)
 FN:100,(anonymous_2)
-FNF:2
+FN:103,(anonymous_3)
+FNF:3
 FNH:1
 FNDA:2,(anonymous_1)
 FNDA:0,(anonymous_2)
+FNDA:0,(anonymous_3)
 DA:72,1
 DA:73,1
 DA:74,1
@@ -21,7 +23,7 @@ DA:94,1
 DA:96,1
 DA:99,1
 DA:101,0
-DA:102,0
+DA:104,0
 LF:16
 LH:14
 BRF:0

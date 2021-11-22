@@ -36,3 +36,4 @@ describe("TheHeader.vue", () => {
     expect(typeof (wrapper.vm as any).testProperty).toEqual("string");
   });
 });
+

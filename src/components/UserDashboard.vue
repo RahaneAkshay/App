@@ -94,6 +94,9 @@ update(currentUser:any):void{
   this.userRecords[this.currentUser.index] = this.currentUser
  this.updateUser( this.userRecords)
 }
+updated():void{
+this.userRecords = this.getAllUsers
+}
 
 }
 
